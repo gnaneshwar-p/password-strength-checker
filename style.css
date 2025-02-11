@@ -1,37 +1,64 @@
-body{
-	font-family: Arial, sans-serif
-	background-color: #f4f4f4;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	margin:0;
+/* Background image */
+body {
+    background-image: url('C:\Users\gnane\password-strength-checker\web-background.jpg'); /* Replace with your own image path */
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.container{
-	text-align: center;
-	background-color: #fff;
-	padding: 30px;
-	border-radius: 8px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+/* Container styling */
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
 }
 
-input{
-	width: 300px;
-	padding: 10px;
-	font-size: 16px;
-	margin-bottom: 20px;
-	border-radius: 4px;
-	border: 1px solid #ccc;
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-#strength-feedback {
-	font-size: 18px;
-	font-weight: bold;
-	margin: 10px 0;
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
-#password-suggestions{
-	font-size: 14px;
-	color: #888;
-} 
+/* Strength bar styling */
+.strength-bar {
+    height: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+/* Colors for strength levels */
+.weak {
+    background-color: red;
+}
+
+.moderate {
+    background-color: yellow;
+}
+
+.strong {
+    background-color: green;
+}
+
+/* Message styling */
+.message {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #555;
+}

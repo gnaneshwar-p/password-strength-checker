@@ -1,38 +1,45 @@
-function checkPasswordStrength() {
-    const password = document.getElementById('password').value;
-    const feedback = document.getElementById('strength-feedback');
-    const suggestions = document.getElementById('password-suggestions');
+// Get the elements from the DOM
+const passwordInput = document.getElementById('password');
+const strengthBar = document.getElementById('strength-bar');
+const strengthMessage = document.getElementById('strength-message');
 
-    const result = zxcvbn(password); // Returns a result object
+// Add an event listener to the password input field to check the strength on input
+passwordInput.addEventListener('input', function() {
+    const password = passwordInput.value;
+    const result = checkPasswordStrength(password);
+    updateUI(result);  // Pass the result to the updateUI function
+});
 
-    // Display password strength feedback
-    feedback.innerText = `Strength: ${result.score}/4`;
-    
-    // Provide suggestions if password is weak
-    if (result.score < 3) {
-        suggestions.innerHTML = `<strong>Suggestions:</strong> ${result.feedback.suggestions.join(', ')}`;
-    } else {
-        suggestions.innerHTML = 'Great! Your password is strong.';
-    }
+// Function to check the password strength based on different criteria
+function checkPasswordStrength(password) {
+    let score = 0;
+
+    // Criteria for password strength
+    if (password.length >= 8) score++; // Length check
+    if (/[A-Z]/.test(password)) score++; // Uppercase letter check
+    if (/[a-z]/.test(password)) score++; // Lowercase letter check
+    if (/\d/.test(password)) score++; // Digit check
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) score++; // Special character check
+
+    return score;
 }
 
-function generatePasswordSuggestions(password) {
-    let suggestions = [];
-
-    if (password.length < 8) {
-        suggestions.push('Password should be at least 8 characters long');
+// Function to update the UI based on the password strength score
+function updateUI(score) {
+    if (score === 0) {
+        strengthBar.className = 'strength-bar weak';
+        strengthMessage.textContent = 'Password is too weak';
+    } else if (score === 1) {
+        strengthBar.className = 'strength-bar weak';
+        strengthMessage.textContent = 'Weak password, try adding more characters or variety.';
+    } else if (score === 2) {
+        strengthBar.className = 'strength-bar moderate';
+        strengthMessage.textContent = 'Moderate strength. Consider adding numbers or special characters.';
+    } else if (score === 3) {
+        strengthBar.className = 'strength-bar moderate';
+        strengthMessage.textContent = 'Good strength, but could be stronger with more variety.';
+    } else if (score >= 4) {
+        strengthBar.className = 'strength-bar strong';
+        strengthMessage.textContent = 'Strong password! Great job!';
     }
-    if (!/[A-Z]/.test(password)) {
-        suggestions.push('Add an uppercase letter');
-    }
-    if (!/[0-9]/.test(password)) {
-        suggestions.push('Include at least one number');
-    }
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-        suggestions.push('Add at least one special character');
-    }
-
-    return suggestions;
 }
-
-
