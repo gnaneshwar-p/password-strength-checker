@@ -30,9 +30,6 @@ You need to have the following installed on your machine:
 - **Node.js**: To run the backend server and install dependencies via npm.
 - **Git**: To clone the repository.
 
-### Clone the Repository
+### you can check the site using the below url 
 
-To clone this repository to your local machine:
-
-```bash
-git clone https://github.com/your-username/Password-Strength-Checker.git
+- **https://gnaneshwar-p.github.io/password-strength-checker/
